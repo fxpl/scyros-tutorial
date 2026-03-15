@@ -1,0 +1,43 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t scyros-tutorial .
+
+      - name: Run container
+        run: |
+          docker run -d --name scyros-tutorial-test -p 8501:8501 scyros-tutorial
+
+      - name: Wait for app to become ready
+        run: |
+          for i in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:8501 > /dev/null; then
+              echo "App is up"
+              exit 0
+            fi
+            echo "Waiting for app..."
+            sleep 2
+          done
+          echo "App did not become ready in time"
+          docker logs scyros-tutorial-test
+          exit 1
+
+      - name: Print container logs
+        if: always()
+        run: docker logs scyros-tutorial-test
+
+      - name: Stop container
+        if: always()
+        run: docker rm -f scyros-tutorial-test
