@@ -1,5 +1,9 @@
 # Tutorial: Getting Started with Scyros
 
+[![Actions status](https://github.com/fxpl/scyros-tutorial/actions/workflows/docker.yml/badge.svg)](https://github.com/fxpl/scyros-tutorial/actions)
+![License](https://img.shields.io/crates/l/scyros.svg)
+[![GitHub release](https://img.shields.io/github/v/release/fxpl/scyros)](https://github.com/fxpl/scyros/releases)
+
 This repository contains an interactive tutorial showing how to use Scyros to mine GitHub repositories and extract functions from real-world code. In the tutorial, we build a small end-to-end pipeline to extract functions with integer types in C and Java repositories mined from GitHub. 
 
 The tutorial itself runs inside a Streamlit web application.
