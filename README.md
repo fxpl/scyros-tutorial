@@ -71,7 +71,7 @@ To build the Docker image, please follow the steps below:
     ```
 5. Start the Streamlit application:
     ```bash
-    streamlit run Scyros_Tutorial.py
+    uv run streamlit run Scyros_Tutorial.py
     ```
 
 
